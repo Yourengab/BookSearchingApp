@@ -1,0 +1,16 @@
+/* google font */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+/* tailwind utility */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .body-bg {
+    @apply bg-[#F1F1F1];
+  }
+
+  .body-green {
+    @apply bg-[#A5CBB3];
+  }
+}

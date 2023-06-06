@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Millobooks</title>
+    <!-- AOS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css"
+      integrity="sha512-6lLUdeQ5uheMFbWm3CP271l14RsX1xtx+J5x2yeIDkkiBpeVTNhTqijME7GgRKKi6hCqovwCoBTlRBEC20M8Mg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- CSS -->
+    <link rel="stylesheet" href="../../dist/output.css" />
+    <!-- FONT AWESOME -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Slick Theme CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css"
+      integrity="sha512-6lLUdeQ5uheMFbWm3CP271l14RsX1xtx+J5x2yeIDkkiBpeVTNhTqijME7GgRKKi6hCqovwCoBTlRBEC20M8Mg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Slick CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
+      integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="body-bg px-6 screen:px-10 overflow-x-hidden">
+    <header>
+      <nav id="navbar" class="translate-y-[300%] transition-all duration-300 ease-in-out fixed z-10 right-0 left-0 mx-6 py-4 px-6 bottom-8 bg-white rounded-full shadow-xl tablet:max-w-sm tablet:mx-auto tabletlg:hidden">
+        <ul class="flex justify-evenly gap-6">
+          <li class="text-xl font-medium text-dark">
+            <a href=""><i class="fa-solid fa-house"></i></a>
+          </li>
+          <li class="text-xl font-medium text-dark">
+            <a href=""><i class="fa-solid fa-users"></i></a>
+          </li>
+
+          <li class="text-xl font-medium text-dark">
+            <a href=""><i class="fa-solid fa-magnifying-glass"></i></a>
+          </li>
+
+          <li class="text-xl font-medium text-dark">
+            <a href=""><i class="fa-solid fa-heart"></i></a>
+          </li>
+
+          <li class="text-xl font-medium text-dark">
+            <a href=""><i class="fa-solid fa-bookmark"></i></a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <section id="home">
+      <div class="container max-w-full mt-12 flex flex-col tabletlg:flex-row tabletlg:gap-6">
+        <div class="px-12 py-6 rounded-2xl shadow-lg flex flex-col items-center w-full laptop:flex-row-reverse" style="background: linear-gradient(94.84deg, #4f46e5 2.28%, #5850dd 48.39%)">
+          <img src="../../src/images/rocket.svg" alt="rocket" class="laptop:w-72" />
+          <div class="">
+            <h2 class="text-2xl font-semibold tracking-tighter text-white">Sejubooks</h2>
+            <p class="mt-4 text-white laptop:text-lg screen:w-[70%]">Sejubooks is a comprehensive online platform dedicated to providing reliable information about books to book lovers all around the world.</p>
+            <div class="flex items-center mt-6">
+              <span class="text-2xl text-main bg-[#AFAAFF] p-[6px] rounded-full shadow-lg"><i class="fa-solid fa-users"></i></span>
+              <p class="ml-4 text-lg font-medium tracking-tight text-white">Join our community</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 p-6 rounded-2xl shadow-lg flex flex-col items-center justify-center w-full tabletlg:w-1/2" style="background: #a5cbb3">
+          <img src="" alt="alarm" class="w-32" />
+          <div class="p-4">
+            <h2 class="text-2xl font-semibold tracking-tighter text-dark text-center mt-2" id="current-time">4 : 30</h2>
+            <div class="flex items-center text-xl text-dark mt-4">
+              <i class="fa-solid fa-location-dot mr-2"></i>
+              <p id="location">Bali, Indonesia</p>
+            </div>
+          </div>
+          <button class="bg-dark w-full text-white h-12 rounded-lg shadow-lg tracking-tight font-semibold">Set reading time</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRENDING BOOKS -->
+    <section id="trending" class="mt-20 screen:px-10">
+      <div class="flex gap-4 flex-wrap justify-between">
+        <h2 class="text-2xl font-semibold tracking-tighter">Check this <span class="font-bold text-main">trending books</span> 😎</h2>
+        <p class="underline tracking-tight"><a href="#search">Looking for something🤷‍♂️?</a></p>
+      </div>
+
+      <div id="popular-books" class="container mt-10 slider max-w-full flex">
+        <div class="mb-10 mx-2 slider-box" id="books-box">
+          <img src="" alt="books" class="w-full bg-green-400 tablet:w-72 h-80 rounded-xl" />
+          <div class="mt-10">
+            <h2 class="uppercase text-lg font-bold text-main tracking-tight">PENULIS</h2>
+            <p class="capitalize mb-8 mt-2 text-xl font-semibold text-dark tracking-tight w-72">Ini Judul Bukunya Dibuat Panjang Biar Keren Sama Mau Nyoba</p>
+            <span class="py-2 px-4 bg-gray-300 rounded-full max-w-lg text-dark tracking-tight">Genre & Agak Panjang</span>
+            <div class="flex gap-6 mt-10">
+              <button class="px-6 bg-main rounded-full text-white h-12 font-medium">Synopsis</button>
+              <button class="-500 px-6 h-12 rounded-full text-dark font-medium text-[14px]">Save to library <i class="fa-solid fa-bookmark ml-2"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-10 mx-2 slider-box" id="books-box">
+          <img src="" alt="books" class="w-full bg-green-400 tablet:w-72 h-80 rounded-xl" />
+          <div class="mt-10">
+            <h2 class="uppercase text-lg font-bold text-main tracking-tight">PENULIS</h2>
+            <p class="capitalize mb-8 mt-2 text-xl font-semibold text-dark tracking-tight w-72">Ini Judul Bukunya Dibuat Panjang Biar Keren Sama Mau Nyoba</p>
+            <span class="py-2 px-4 bg-gray-300 rounded-full max-w-lg text-dark tracking-tight">Genre & Agak Panjang</span>
+            <div class="flex gap-6 mt-10">
+              <button class="px-6 bg-main rounded-full text-white h-12 font-medium">Synopsis</button>
+              <button class="-500 px-6 h-12 rounded-full text-dark font-medium text-[14px]">Save to library <i class="fa-solid fa-bookmark ml-2"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-10 mx-2 slider-box" id="books-box">
+          <img src="" alt="books" class="w-full bg-green-400 tablet:w-72 h-80 rounded-xl" />
+          <div class="mt-10">
+            <h2 class="uppercase text-lg font-bold text-main tracking-tight">PENULIS</h2>
+            <p class="capitalize mb-8 mt-2 text-xl font-semibold text-dark tracking-tight w-72">Ini Judul Bukunya Dibuat Panjang Biar Keren Sama Mau Nyoba</p>
+            <span class="py-2 px-4 bg-gray-300 rounded-full max-w-lg text-dark tracking-tight">Genre & Agak Panjang</span>
+            <div class="flex gap-6 mt-10">
+              <button class="px-6 bg-main rounded-full text-white h-12 font-medium">Synopsis</button>
+              <button class="-500 px-6 h-12 rounded-full text-dark font-medium text-[14px]">Save to library <i class="fa-solid fa-bookmark ml-2"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-10 mx-2 slider-box" id="books-box">
+          <img src="" alt="books" class="w-full bg-green-400 tablet:w-72 h-80 rounded-xl" />
+          <div class="mt-10">
+            <h2 class="uppercase text-lg font-bold text-main tracking-tight">PENULIS</h2>
+            <p class="capitalize mb-8 mt-2 text-xl font-semibold text-dark tracking-tight w-72">Ini Judul Bukunya Dibuat Panjang Biar Keren Sama Mau Nyoba</p>
+            <span class="py-2 px-4 bg-gray-300 rounded-full max-w-lg text-dark tracking-tight">Genre & Agak Panjang</span>
+            <div class="flex gap-6 mt-10">
+              <button class="px-6 bg-main rounded-full text-white h-12 font-medium">Synopsis</button>
+              <button class="-500 px-6 h-12 rounded-full text-dark font-medium text-[14px]">Save to library <i class="fa-solid fa-bookmark ml-2"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="search" class="mt-12 mb-20 pt-12 screen:px-10">
+      <h2 class="text-2xl tracking-tight font-semibold text-dark">Search your<span class="font-bold text-main"> favorites books😍</span></h2>
+      <div class="mt-8">
+        <input id="search-box" type="text" placeholder="Search books, titles" class="bg-[#E9E9E9] w-64 h-10 border hover:border-main px-6 rounded-lg shadow-lg mb-10 tablet:w-1/2 screen:w-[400px]" />
+        <button id="search-btn" class="bg-main h-10 w-10 text-white rounded-lg ml-4 hover:bg-dark transition ease-in-out"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+
+      <div class="searchBox container mt-10 flex justify-center flex-wrap gap-8 mx-auto max-w-full tablet:justify-between">
+        <div class="bg-dangerLight w-full p-4 text-danger text-center text-md font-medium shadow-lg rounded-lg tablet:text-xl">Please type somethin in the search box</div>
+      </div>
+    </section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- CDNJS Slick -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"
+      integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+    <!-- JS -->
+    <script src="../../src/js/script.js"></script>
+  </body>
+</html>
