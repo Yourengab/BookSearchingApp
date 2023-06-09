@@ -1,6 +1,6 @@
 // *********************** SLIDER CONFIG *********************** \\
 $(".slider").slick({
-  dots: true,
+  dots: false,
   speed: 300,
   arrows: false,
   slidesToShow: 3,
@@ -76,6 +76,29 @@ window.addEventListener("scroll", function () {
   setInterval(updateTime, 10);
 });
 
+// // *********************** POPULAR BOOKS *********************** \\
+async function getPopularBooks() {
+  const currentDate = new Date().toISOString().split("T")[0];
+  const popularBooks = await fetchPopularBooks(currentDate);
+
+  const popularTitles = popularBooks.flatMap((popular) => popular.books.map((book) => book));
+  console.log(popularTitles);
+
+  displayPopularBooks(popularTitles);
+}
+getPopularBooks();
+
+// *********************** GET POPULAR BOOKS *********************** \\
+async function fetchPopularBooks(date) {
+  try {
+    const response = await fetch(`https://api.nytimes.com/svc/books/v3/lists/overview.json?published_date=${date}&api-key=GgqWyqrNhJvswKkIAkzuIwqAVWs78M0C`);
+    const data = await response.json();
+    return data.results.lists;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+}
 // *********************** EVENT WHEN USER SEARCH A BOOK *********************** \\
 const searchBtn = document.querySelector("#search-btn");
 const inputKeyword = document.querySelector("#search-box");
@@ -107,6 +130,15 @@ async function getBooks(keyword) {
 }
 
 // *********************** DISPLAY BOOKS TO HTML *********************** \\
+// Popular Books
+const popularContainer = document.querySelector(".popular-books");
+function displayPopularBooks(book) {
+  let popularBooksCard = "";
+
+  book.forEach((bookList) => (popularBooksCard += mappedPopularBooksInContainer(bookList)));
+  popularContainer.innerHTML = popularBooksCard;
+}
+// Search books
 const searchContainer = document.querySelector(".searchBox");
 function displayBooks(book) {
   let booksCard = "";
@@ -116,6 +148,25 @@ function displayBooks(book) {
 }
 
 // *********************** MAPPED BOOKS TO CARD *********************** \\
+// Popular book
+function mappedPopularBooksInContainer(bookList) {
+  // card logic
+
+  // return card value
+  return `<div class="mx-2 slider-box" id="books-box">
+  <img src="${bookList.book_image}" alt="books" class="w-full bg-green-400 tablet:w-72 h-80 rounded-xl" />
+  <div class="mt-10">
+    <h2 class="uppercase text-lg font-bold text-main tracking-tight">${bookList.author}</h2>
+    <p class="capitalize mb-8 mt-2 text-xl font-semibold text-dark tracking-tight w-72">${bookList.title}</p>
+    <div class="flex gap-6 justify-between mt-10 w-full tablet:w-72">
+      <button class="w-full bg-main rounded-full text-white h-12 font-medium">Synopsis</button>
+      <button class="border px-4 border-dark rounded-full text-dark font-medium"><i class="fa-solid fa-bookmark"></i></button>
+    </div>
+  </div>
+</div>`;
+}
+
+// Search book
 function mappedBooksInContainer(bookList) {
   // card logic
   const { volumeInfo } = bookList;
@@ -131,8 +182,7 @@ function mappedBooksInContainer(bookList) {
     <span class="py-2 px-4 bg-gray-300 rounded-full max-w-lg text-dark tracking-tight">${!volumeInfo.categories ? "Unknown Categories" : volumeInfo.categories[0].split(",")[0]}</span>
 
     <div class="flex gap-6 justify-between mt-10">
-      <button class="w-full bg-main rounded-full text-white h-12 font-medium">Synopsis</button>
-      <button class="border px-4 border-dark  rounded-full text-dark font-medium"><i class="fa-solid fa-bookmark"></i></button>
+    <button class="synopsis w-full bg-main rounded-full text-white h-12 font-medium">Save to Library<i class="fa-solid fa-bookmark ml-2"></i></button>
     </div>
   </div>
 </div>`;
@@ -151,7 +201,6 @@ function lazyLoading() {
     
         <div class="flex gap-6 justify-between mt-10">
           <button class="w-full bg-gray-300 rounded-full text-white h-12 font-medium animate-pulse"></button>
-          <button class="border px-6 bg-gray-300 rounded-full h-12 animate-pulse"></button>
         </div>
       </div>
     </div>
