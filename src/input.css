@@ -13,4 +13,10 @@
   .body-green {
     @apply bg-[#A5CBB3];
   }
+  .padding {
+    @apply tabletlg:pl-24 tabletlg:pr-4;
+  }
+  .links {
+    @apply text-xl font-medium text-dimmed hover:bg-main hover:text-white  rounded-full;
+  }
 }

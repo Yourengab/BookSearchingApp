@@ -28,7 +28,7 @@ module.exports = {
         main: "#4F46E5",
         dark: "#27272A",
         accent: "#85C77F",
-        dimmed: "#E1E1E1",
+        dimmed: "#C8C7C7",
         danger: "#FF5151",
         dangerLight: "#F9C3C3",
       },

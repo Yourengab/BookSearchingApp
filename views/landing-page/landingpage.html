@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -40,9 +40,12 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body class="body-bg px-6 screen:px-10 overflow-x-hidden">
+  <body class="body-bg px-6 padding overflow-x-hidden">
     <header>
       <nav id="navbar" class="translate-y-[300%] transition-all duration-300 ease-in-out fixed z-10 right-0 left-0 mx-6 py-4 px-6 bottom-8 bg-white rounded-full shadow-xl tablet:max-w-sm tablet:mx-auto tabletlg:hidden">
         <ul class="flex justify-evenly gap-6">
@@ -66,17 +69,39 @@
           </li>
         </ul>
       </nav>
+      <nav class="hidden tabletlg:flex tabletlg:flex-col tabletlg:items-center h-full w-20 bg-[#F1F1F1] shadow-md fixed z-10 top-0 left-0 f">
+        <ul class="mt-10 flex flex-col items-center justify-evenly gap-10 h-1/2">
+          <li class="links">
+            <a href="#search" class="px-3 py-[10px] block"><i class="fa-solid fa-house"></i></a>
+          </li>
+          <li class="links">
+            <a href="" class="px-3 py-[10px] block"><i class="fa-solid fa-users"></i></a>
+          </li>
+
+          <li class="links">
+            <a href="" class="px-3 py-[8px] block"><i class="fa-solid fa-magnifying-glass"></i></a>
+          </li>
+
+          <li class="links">
+            <a href="" class="px-3 py-[8px] block"><i class="fa-solid fa-heart"></i></a>
+          </li>
+
+          <li class="links">
+            <a href="" class="px-4 py-[10px] block"><i class="fa-solid fa-bookmark"></i></a>
+          </li>
+        </ul>
+      </nav>
     </header>
 
-    <section id="home">
+    <section id="home" class="padding">
       <div class="container max-w-full mt-12 flex flex-col tabletlg:flex-row tabletlg:gap-6">
-        <div class="px-12 py-6 rounded-2xl shadow-lg flex flex-col items-center w-full laptop:flex-row-reverse" style="background: #4c7a5d">
+        <div class="px-12 py-6 rounded-2xl shadow-lg flex flex-col items-center w-full laptop:flex-row-reverse" style="background: linear-gradient(94.84deg, #4f46e5 2.28%, #5850dd 48.39%)">
           <img src="../../src/images/rocket.svg" alt="rocket" class="laptop:w-72" />
           <div class="">
             <h2 class="text-2xl font-semibold tracking-tighter text-white">Sejubooks</h2>
             <p class="mt-4 text-white laptop:text-lg screen:w-[70%]">Sejubooks is a comprehensive online platform dedicated to providing reliable information about books to book lovers all around the world.</p>
             <div class="flex items-center mt-6">
-              <span class="text-2xl text-white bg-accent p-3 rounded-full shadow-lg"><i class="fa-solid fa-users"></i></span>
+              <span class="text-2xl text-white bg-main p-3 rounded-full shadow-xl"><i class="fa-solid fa-users"></i></span>
               <p class="ml-4 text-lg font-medium tracking-tight text-white">Join our community</p>
             </div>
           </div>
@@ -97,16 +122,19 @@
     </section>
 
     <!-- TRENDING BOOKS -->
-    <section id="trending" class="mt-20 screen:px-10">
+    <section id="trending" class="mt-20 padding">
       <div class="flex gap-4 flex-wrap justify-between">
         <h2 class="text-2xl font-semibold tracking-tighter">Check this <span class="font-bold text-main">trending books</span> 😎</h2>
         <p class="underline tracking-tight"><a href="#search">Looking for something🤷‍♂️?</a></p>
       </div>
-
-      <div class="popular-books container mt-10 py-10 slider max-w-full flex"></div>
+      <div class="swiper">
+        <div class="popular-books container mt-10 py-10 max-w-full flex swiper-wrapper"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
     </section>
 
-    <section id="search" class="mt-12 mb-20 pt-12 screen:px-10">
+    <section id="search" class="mt-12 mb-20 pt-12 padding">
       <h2 class="text-2xl tracking-tight font-semibold text-dark">Search your<span class="font-bold text-main"> favorites books😍</span></h2>
       <div class="mt-8">
         <input id="search-box" type="text" placeholder="Search books, titles" class="bg-[#E9E9E9] w-64 h-10 border hover:border-main px-6 rounded-lg shadow-lg mb-10 tablet:w-1/2 screen:w-[400px]" />
@@ -117,8 +145,30 @@
         <div class="bg-dangerLight w-full p-4 text-danger text-center text-md font-medium shadow-lg rounded-lg tablet:text-xl">Please type something in the search box</div>
       </div>
     </section>
+    <!-- 
+    <div class="swiper">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      <div class="swiper-wrapper">
+        <div class="swiper-slide bg-red-400 mx-2">Slide 1</div>
+        <div class="swiper-slide bg-red-400 mx-2">Slide 2</div>
+        <div class="swiper-slide bg-red-400 mx-2">Slide 3</div>
+        <div class="swiper-slide bg-red-400 mx-2">Slide 1</div>
+        <div class="swiper-slide bg-red-400 mx-2">Slide 2</div>
+        <div class="swiper-slide bg-red-400 mx-2">Slide 3</div>
+        <div class="swiper-slide bg-red-400 mx-2">Slide 1</div>
+        <div class="swiper-slide bg-red-400 mx-2">Slide 2</div>
+        <div class="swiper-slide bg-red-400 mx-2">Slide 3</div>
+        <div class="swiper-slide bg-red-400 mx-2">Slide 1</div>
+        <div class="swiper-slide bg-red-400 mx-2">Slide 2</div>
+        <div class="swiper-slide bg-red-400 mx-2">Slide 3</div>
+      </div>
+
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
     <!-- CDNJS Slick -->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"

@@ -1,35 +1,24 @@
 // *********************** SLIDER CONFIG *********************** \\
-$(".slider").slick({
-  dots: false,
-  speed: 300,
-  arrows: false,
-  slidesToShow: 3,
-  slidesToScroll: 3,
-  responsive: [
-    {
-      breakpoint: 1024,
-      settings: {
-        slidesToShow: 2,
-        slidesToScroll: 2,
-        infinite: true,
-        dots: true,
-      },
+const swiper = new Swiper(".swiper", {
+  slidesPerView: 1,
+  spaceBetween: 50,
+  centeredSlides: false,
+  breakpoints: {
+    1300: {
+      slidesPerView: 4,
     },
-    {
-      breakpoint: 720,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1,
-      },
+    1024: {
+      slidesPerView: 3,
     },
-    {
-      breakpoint: 480,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1,
-      },
+
+    550: {
+      slidesPerView: 2,
     },
-  ],
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
 });
 
 // *********************** CHECK IF WINDOW IS SCROLLED *********************** \\
@@ -150,17 +139,14 @@ function displayBooks(book) {
 // *********************** MAPPED BOOKS TO CARD *********************** \\
 // Popular book
 function mappedPopularBooksInContainer(bookList) {
-  // card logic
-
   // return card value
-  return `<div class="mx-2 slider-box" id="books-box">
-  <img src="${bookList.book_image}" alt="books" class="w-full bg-green-400 tablet:w-72 h-80 rounded-xl" />
+  return `<div class="swiper-slide bg-white p-4 rounded-xl" id="books-box">
+  <img src="${bookList.book_image}" alt="books" class="w-full h-80 rounded-xl" />
   <div class="mt-10">
-    <h2 class="uppercase text-lg font-bold text-main tracking-tight">${bookList.author}</h2>
-    <p class="capitalize mb-8 mt-2 text-xl font-semibold text-dark tracking-tight w-72">${bookList.title}</p>
-    <div class="flex gap-6 justify-between mt-10 w-full tablet:w-72">
-      <button class="w-full bg-main rounded-full text-white h-12 font-medium">Synopsis</button>
-      <button class="border px-4 border-dark rounded-full text-dark font-medium"><i class="fa-solid fa-bookmark"></i></button>
+    <h2 class="uppercase text-lg font-bold text-main tracking-tight h-[52px]">${bookList.author}</h2>
+    <p class="capitalize mb-8 mt-2 text-xl font-semibold text-dark tracking-tight h-[52px]">${bookList.title}</p>
+    <div class="flex gap-6 justify-between mt-10">
+    <button class="synopsis w-full bg-main rounded-full text-white h-12 font-medium">Save to Library<i class="fa-solid fa-bookmark ml-2"></i></button>
     </div>
   </div>
 </div>`;
