@@ -46,6 +46,19 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body class="body-bg px-6 padding overflow-x-hidden">
+    <div class="savedBooksContainer left-0 w-full h-full top-0 px-6 bg-white fixed z-10 translate-x-[100%] transition-all ease-out duration-500 tablet:w-[375px] tablet:right-0 tablet:left-auto">
+      <button class="bg-dark h-12 w-12 mt-10 text-white rounded-full text-xl shadow-xl backButton"><i class="fa-solid fa-arrow-left"></i></button>
+
+      <div class="savedBooks mt-8">
+        <h2 class="font-semibold text-xl text-dark mb-8">Saved Books😍</h2>
+
+        <div class="saved overflow-y-scroll h-60"></div>
+      </div>
+
+      <button class="deleteSaved w-full bg-red-200 h-10 text-red-500 rounded-full shadow-md font-medium mt-8">Delete All Saved Books</button>
+
+      <div class="continueReading"></div>
+    </div>
     <header>
       <nav id="navbar" class="translate-y-[300%] transition-all duration-300 ease-in-out fixed z-10 right-0 left-0 mx-6 py-4 px-6 bottom-8 bg-white rounded-full shadow-xl tablet:max-w-sm tablet:mx-auto tabletlg:hidden">
         <ul class="flex justify-evenly gap-6">
@@ -64,8 +77,8 @@
             <a href=""><i class="fa-solid fa-heart"></i></a>
           </li>
 
-          <li class="text-xl font-medium text-dark">
-            <a href=""><i class="fa-solid fa-bookmark"></i></a>
+          <li class="toggleSaved text-xl font-medium text-dark">
+            <a><i class="fa-solid fa-bookmark"></i></a>
           </li>
         </ul>
       </nav>
@@ -86,8 +99,8 @@
             <a href="" class="px-3 py-[8px] block"><i class="fa-solid fa-heart"></i></a>
           </li>
 
-          <li class="links">
-            <a href="" class="px-4 py-[10px] block"><i class="fa-solid fa-bookmark"></i></a>
+          <li class="links toggleSaved">
+            <a class="px-4 py-[10px] block"><i class="fa-solid fa-bookmark"></i></a>
           </li>
         </ul>
       </nav>
@@ -145,27 +158,8 @@
         <div class="bg-dangerLight w-full p-4 text-danger text-center text-md font-medium shadow-lg rounded-lg tablet:text-xl">Please type something in the search box</div>
       </div>
     </section>
-    <!-- 
-    <div class="swiper">
 
-      <div class="swiper-wrapper">
-        <div class="swiper-slide bg-red-400 mx-2">Slide 1</div>
-        <div class="swiper-slide bg-red-400 mx-2">Slide 2</div>
-        <div class="swiper-slide bg-red-400 mx-2">Slide 3</div>
-        <div class="swiper-slide bg-red-400 mx-2">Slide 1</div>
-        <div class="swiper-slide bg-red-400 mx-2">Slide 2</div>
-        <div class="swiper-slide bg-red-400 mx-2">Slide 3</div>
-        <div class="swiper-slide bg-red-400 mx-2">Slide 1</div>
-        <div class="swiper-slide bg-red-400 mx-2">Slide 2</div>
-        <div class="swiper-slide bg-red-400 mx-2">Slide 3</div>
-        <div class="swiper-slide bg-red-400 mx-2">Slide 1</div>
-        <div class="swiper-slide bg-red-400 mx-2">Slide 2</div>
-        <div class="swiper-slide bg-red-400 mx-2">Slide 3</div>
-      </div>
-
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
-    </div> -->
+    <div id="savedContent"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 

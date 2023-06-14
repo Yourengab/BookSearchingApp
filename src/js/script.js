@@ -65,7 +65,30 @@ window.addEventListener("scroll", function () {
   setInterval(updateTime, 10);
 });
 
-// // *********************** POPULAR BOOKS *********************** \\
+// *********************** SAVED BOOKS *********************** \\
+const toggleSaved = document.querySelectorAll(".toggleSaved");
+toggleSaved.forEach((button) => {
+  const savedContainer = document.querySelector(".savedBooksContainer");
+  button.addEventListener("click", function () {
+    savedContainer.classList.toggle("translate-x-[100%]");
+    const savedBooksString = localStorage.getItem("savedBooks");
+
+    const savedBooks = JSON.parse(savedBooksString) || [];
+    displaySavedBooks(savedBooks);
+  });
+  const backButton = document.querySelector(".backButton");
+  backButton.addEventListener("click", function () {
+    savedContainer.classList.remove("translate-x-[0%]");
+    savedContainer.classList.add("translate-x-[100%]");
+  });
+});
+
+const deleteSavedBooks = document.querySelector(".deleteSaved");
+deleteSavedBooks.addEventListener("click", function () {
+  localStorage.clear();
+});
+
+// *********************** POPULAR BOOKS *********************** \\
 async function getPopularBooks() {
   const currentDate = new Date().toISOString().split("T")[0];
   const popularBooks = await fetchPopularBooks(currentDate);
@@ -136,6 +159,38 @@ function displayBooks(book) {
   searchContainer.innerHTML = booksCard;
 }
 
+// *********************** SAVE BOOK TO LOCAL STORAGE *********************** \\
+// Add event listener to handle save button clicks
+document.addEventListener("click", async function (event) {
+  if (event.target.classList.contains("save")) {
+    const bookImg = event.target.dataset.img;
+    const bookAuthor = event.target.dataset.author;
+    const bookTitle = event.target.dataset.title;
+    const bookData = {
+      image: bookImg,
+      author: bookAuthor,
+      title: bookTitle,
+    };
+
+    const savedBooks = await saveBookToLocalStorage(bookData);
+    displaySavedBooks(savedBooks);
+  }
+});
+
+// Save book to local storage
+async function saveBookToLocalStorage(bookData) {
+  const savedBooks = JSON.parse(localStorage.getItem("savedBooks")) || [];
+  savedBooks.push(bookData);
+  localStorage.setItem("savedBooks", JSON.stringify(savedBooks));
+  return savedBooks;
+}
+
+// Display saved books
+function displaySavedBooks(booksData) {
+  const savedContentDiv = document.querySelector(".saved");
+  savedContentDiv.innerHTML = booksData.map(mapSavedBook).join("");
+}
+
 // *********************** MAPPED BOOKS TO CARD *********************** \\
 // Popular book
 function mappedPopularBooksInContainer(bookList) {
@@ -146,7 +201,7 @@ function mappedPopularBooksInContainer(bookList) {
     <h2 class="uppercase text-lg font-bold text-main tracking-tight h-[52px]">${bookList.author}</h2>
     <p class="capitalize mb-8 mt-2 text-xl font-semibold text-dark tracking-tight h-[52px]">${bookList.title}</p>
     <div class="flex gap-6 justify-between mt-10">
-    <button class="synopsis w-full bg-main rounded-full text-white h-12 font-medium">Save to Library<i class="fa-solid fa-bookmark ml-2"></i></button>
+    <button class="save w-full bg-main rounded-full text-white h-12 font-medium" data-img="${bookList.book_image}" data-author="${bookList.author}" data-title="${bookList.title}">Save to Library<i class="fa-solid fa-bookmark ml-2"></i></button>
     </div>
   </div>
 </div>`;
@@ -168,12 +223,26 @@ function mappedBooksInContainer(bookList) {
     <span class="py-2 px-4 bg-gray-300 rounded-full max-w-lg text-dark tracking-tight">${!volumeInfo.categories ? "Unknown Categories" : volumeInfo.categories[0].split(",")[0]}</span>
 
     <div class="flex gap-6 justify-between mt-10">
-    <button class="synopsis w-full bg-main rounded-full text-white h-12 font-medium">Save to Library<i class="fa-solid fa-bookmark ml-2"></i></button>
+    <button class="save w-full bg-main rounded-full text-white h-12 font-medium">Save to Library<i class="fa-solid fa-bookmark ml-2"></i></button>
     </div>
   </div>
 </div>`;
 }
 
+// Map a saved book to HTML markup
+function mapSavedBook(data) {
+  const savedImg = data.image;
+  const savedTitle = data.title;
+  const savedAuthor = data.author;
+  return ` <div class="savedCard mt-8 flex">
+  <img src="${savedImg}"  class="w-32 h-40 rounded-xl" />
+  <div class="savedText ml-4">
+    <h2 class="text-main font-semibold capitalize text-sm">${savedAuthor}</h2>
+    <p class="text-dark capitalize mt-2 mb-6">${savedTitle}</p>
+    <span class="mt-3 py-2 px-4 bg-gray-300 rounded-full text-sm text-dark tracking-tight">Adventurres</span>
+  </div>
+</div>`;
+}
 // *********************** LAZY LOADING CARD *********************** \\
 function lazyLoading() {
   const lazyCardTemplate = `
